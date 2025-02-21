@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Home, User, HelpCircle } from "lucide-react";
+import { Home, User, HelpCircle, List, CheckCircle } from "lucide-react";
 
 function Sidebar() {
   const [isVisible, setVisible] = useState(false);
@@ -11,6 +11,16 @@ function Sidebar() {
       name: "HelpSupport",
       path: "/help-support",
       icon: <HelpCircle size={20} />,
+    },
+    {
+      name: "AppliedJobList",
+      path: "/applied-job-list",
+      icon: <List size={20} />,
+    },
+    {
+      name: "ApplyForJob",
+      path: "/apply-for-job",
+      icon: <CheckCircle size={20} />,
     },
   ];
   return (
