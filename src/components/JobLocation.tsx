@@ -1,23 +1,26 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import JobPosition from "./JobPosition";
 
 type FormValues = { location: string };
 
-function JobLocation() {
+function JobLocation({
+  //props from parent
+  onChangeLocation,
+}: {
+  onChangeLocation: (value: string) => void;
+}) {
   const [isSelected, setSelected] = useState(""); // Tracks selected radio value
   const [inputValue, setInputValue] = useState(""); // Tracks input value
-  const [isComplete, setComplete] = useState(false);
 
   const form = useForm<FormValues>();
-  const { register, control, handleSubmit, setValue } = form;
+  const { register, handleSubmit, setValue } = form;
 
   function onRadioSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setSelected(value);
-    setInputValue(value); // Update input field with radio selection
+    setInputValue(value);
     setValue("location", value);
+    onChangeLocation(value);
   }
 
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -25,11 +28,11 @@ function JobLocation() {
     setSelected(""); // Reset radio selection if user types
     setInputValue(value);
     setValue("location", value);
+    onChangeLocation(value);
   }
 
   function onSubmit() {
     alert("Next Page");
-    setComplete(true);
   }
 
   return (
@@ -74,11 +77,8 @@ function JobLocation() {
               JP Nagar, Bangalore
             </label>
           </div>
-          {!isComplete && <button type="submit">Next</button>}
         </div>
       </form>
-      {isComplete && <JobPosition />}
-      <DevTool control={control} />
     </div>
   );
 }

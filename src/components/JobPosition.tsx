@@ -1,12 +1,17 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { DevTool } from "@hookform/devtools";
+
 type FormValue = { role: string };
-function JobPosition() {
+
+function JobPosition({ //props from parent
+  onChangePosition,
+}: {
+  onChangePosition: (value: string) => void;
+}) {
   const form = useForm<FormValue>();
   const [radioVal, setRadio] = useState("");
   const [inputVal, setInput] = useState("");
-  const { register, control, handleSubmit, setValue } = form;
+  const { register, handleSubmit, setValue } = form;
   const onSubmit = (data: FormValue) => {
     console.log("Submitted", data);
   };
@@ -15,12 +20,14 @@ function JobPosition() {
     setInput(ra);
     setRadio(ra);
     setValue("role", ra);
+    onChangePosition(ra);
   }
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     const ra = e.target.value;
     setRadio("");
     setInput(e.target.value);
     setValue("role", ra);
+    onChangePosition(ra);
   }
   return (
     <div>
@@ -77,11 +84,7 @@ function JobPosition() {
             Steel Fixer
           </label>
         </div>
-        <div>
-          <button>Next</button>
-        </div>
       </form>
-      <DevTool control={control} />
     </div>
   );
 }
