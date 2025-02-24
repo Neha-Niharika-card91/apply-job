@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 type FormValues = { location: string };
 
 function JobLocation({
-  //props from parent
   onChangeLocation,
 }: {
   onChangeLocation: (value: string) => void;
@@ -36,13 +35,12 @@ function JobLocation({
   }
 
   return (
-    <div className="text-light">
-      <h1>JobLocation</h1>
+    <div className="text-dark">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="d-flex flex-column input-group">
-          <div className="d-flex">
-            <label className="input-group-text" id="location">
-              Location
+        <div className="container mt-5">
+          <div className="d-flex align-items-center border p-3">
+            <label id="location" className="me-2 fw-bold">
+              Location:
             </label>
             <input
               value={inputValue}
@@ -51,32 +49,33 @@ function JobLocation({
               })}
               type="text"
               placeholder="city, area, ..."
-              className="form-control "
+              className="form-control border-0"
               onChange={onInputChange}
             />
           </div>
-
-          <div>
-            <label>SUGGESTION</label>
-            <label>
-              <input
-                type="radio"
-                value="HSR, Bangalore"
-                onChange={onRadioSelect}
-                checked={isSelected === "HSR, Bangalore"}
-              />
-              HSR, Bangalore
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="JP Nagar, Bangalore"
-                onChange={onRadioSelect}
-                checked={isSelected === "JP Nagar, Bangalore"}
-              />
-              JP Nagar, Bangalore
-            </label>
-          </div>
+          {!inputValue && (
+            <div className="mt-4">
+              <label className="form-label m-2">SUGGESTION</label>
+              <label>
+                <input
+                  type="radio"
+                  value="HSR, Bangalore"
+                  onChange={onRadioSelect}
+                  checked={isSelected === "HSR, Bangalore"}
+                />
+                HSR, Bangalore
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="JP Nagar, Bangalore"
+                  onChange={onRadioSelect}
+                  checked={isSelected === "JP Nagar, Bangalore"}
+                />
+                JP Nagar, Bangalore
+              </label>
+            </div>
+          )}
         </div>
       </form>
     </div>

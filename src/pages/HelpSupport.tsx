@@ -7,10 +7,6 @@ function HelpSupport() {
           This is Help Section
         </p>
       </div>
-      <div>
-        <div className="d-flex flex-fill">Content</div>
-        <p>Paragraph</p>
-      </div>
     </div>
   );
 }

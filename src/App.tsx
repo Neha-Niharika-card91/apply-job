@@ -13,7 +13,7 @@ function App() {
       <Header />
       <div className="d-flex flex-grow-1 bg-light mt-5 fixed-top">
         <Sidebar />
-        <div className="d-flex flex-column flex-fill container-fluid align-items-center">
+        <div className="flex-grow-1 p-3 justify-content-center align-items-center">
           <Routes>
             <Route path="/" element={<MainContent />} />
             <Route path="/profile" element={<Profile />} />
